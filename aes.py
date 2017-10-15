@@ -644,9 +644,7 @@ def generateRandomKey(keysize):
     """Generates a key from random data of length `keysize`.    
     The returned key is a string of bytes.    
     """
-    if keysize not in (16, 24, 32):
-        emsg = 'Invalid keysize, %s. Should be one of (16, 24, 32).'
-        raise ValueError, emsg % keysize
+    assert keysize in (16, 24, 32)
     return os.urandom(keysize)
 
 def testStr(cleartext, keysize=16, modeName = "CBC"):
