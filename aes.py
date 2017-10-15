@@ -649,12 +649,12 @@ def generateRandomKey(keysize):
 
 def testStr(cleartext, keysize=16, modeName = "CBC"):
     '''Test with random key, choice of mode.'''
-    print 'Random key test', 'Mode:', modeName
-    print 'cleartext:', cleartext
+    print('Random key test Mode: {}'.format(modeName))
+    print('cleartext: {}'.format(cleartext)) 
     key =  generateRandomKey(keysize)
-    print 'Key:', [ord(x) for x in key]
+    print('Key: {}'.format([ord(x) for x in key]))
     mode = AESModeOfOperation.modeOfOperation[modeName]
     cipher = encryptData(key, cleartext, mode)
-    print 'Cipher:', [ord(x) for x in cipher]
+    print('Cipher: {}'.format([ord(x) for x in cipher]))
     decr = decryptData(key, cipher, mode)
-    print 'Decrypted:', decr
+    print('Decrypted: {}'.format(decr))

@@ -75,7 +75,7 @@ def GF_product_p(a, b):
     
 # http://www.cs.utsa.edu/~wagner/laws/FFM.html
 def GF_product_t(a, b, exponentialCalc, logarithmCalc):
-    if (a == 0 | b == 0): return 0
+    if (a == 0 or b == 0): return 0
     expIndex = logarithmCalc[a] + logarithmCalc[b]
     if (expIndex >= 255): expIndex = expIndex - 255
     return exponentialCalc[expIndex]
