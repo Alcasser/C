@@ -17,7 +17,7 @@ def main():
     GFHelpers.testInv(exponential, logarithm)
     print('Product using multiplication: {}'.format(GFHelpers.GF_product_p(a,b)))
     print('Product using tables: {}'.format(GFHelpers.GF_product_t(a,b, exponential, logarithm)))
-    g, failResult = GFHelpers.GF_generador()
+    g = GFHelpers.GF_generador()
     print('Generators of GF(256): {}'.format(g))
     inva = GFHelpers.GF_invers(a, exponential, logarithm)
     one = GFHelpers.GF_product_p(inva, a)
