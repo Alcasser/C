@@ -48,6 +48,7 @@ def GF_tables():
     return exponential, logarithm
     
 def GF_product_p(a, b):
+    if (a == 0 or b == 0): return 0
     bb = asBinString(b)
     sumArray = [] 
     length = len(bb);
@@ -91,5 +92,11 @@ def GF_invers(a, exponentialCalc, logarithmCalc):
     return exponentialCalc[invExp]
 
 def testInv(exponentialCalc, logarithmCalc):
-    for i in range(2, 256):
+    for i in range(1, 256):
         assert (GF_product_p(i, GF_invers(i, exponentialCalc, logarithmCalc)) == 1)
+        
+
+if __name__ == "__main__":
+    exp, log = GF_tables()
+    testInv(exp, log)
+    print("Valid inv")
