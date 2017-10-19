@@ -81,7 +81,7 @@ def text2matrix(text):
         if i % 4 == 0:
             matrix.append([byte])
         else:
-            matrix[i / 4].append(byte)
+            matrix[i // 4].append(byte)
     return matrix
 
 
@@ -106,7 +106,7 @@ class AES:
             if i % 4 == 0:
                 byte = self.round_keys[i - 4][0]        \
                      ^ Sbox[self.round_keys[i - 1][1]]  \
-                     ^ Rcon[i / 4]
+                     ^ Rcon[i // 4]
                 self.round_keys[i].append(byte)
 
                 for j in range(1, 4):
@@ -217,3 +217,10 @@ class AES:
             s[i][3] ^= v
 
         self.__mix_columns(s)
+        
+if __name__ == "__main__":
+        master_key = 0x2b7e151628aed2a6abf7158809cf4f3c
+        aes = AES(master_key)
+        plaintext = 0x3243f6a8885a308d313198a2e0370734
+        encrypted = aes.encrypt(plaintext)
+        decplain = aes.decrypt(encrypted)

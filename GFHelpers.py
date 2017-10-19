@@ -9,10 +9,10 @@ def asBinString(aInt):
     return '{0:08b}'.format(aInt)
 
 def addPolyArrayXor(aPolyArray):
-    resPoly = int(aPolyArray[0],2)
+    resPoly = aPolyArray[0]
     i = 1;
     while i < len(aPolyArray):
-        resPoly = resPoly ^ int(aPolyArray[i], 2)
+        resPoly = resPoly ^ aPolyArray[i]
         i += 1
     return resPoly
 
@@ -26,8 +26,8 @@ def reducePoly(aPoly):
     for i in prange:
         if (sp[i] == '1'):
             # print('Substitute by poly {} to reduce'.format(asBinString(ir << (length - 9 - i))))
-            sumArray.append(asBinString(ir << (length - 9 - i)))
-    sumArray.append(asBinString(aPoly & 0xFF))
+            sumArray.append(ir << (length - 9 - i))
+    sumArray.append(aPoly & 0xFF)
     reducedPoly = addPolyArrayXor(sumArray)
     if (len(asBinString(reducedPoly)) > 8):
         return reducePoly(reducedPoly)
@@ -54,7 +54,7 @@ def GF_product_p(a, b):
     length = len(bb);
     for i in range(length):
         if (bb[length - 1 - i] == '1'):
-            sumArray.append(asBinString(a << i))
+            sumArray.append(a << i)
     resPoly = addPolyArrayXor(sumArray)
     return reducePoly(resPoly)
     
@@ -66,7 +66,7 @@ def GF_product_t(a, b, exponentialCalc, logarithmCalc):
     return exponentialCalc[expIndex]
         
 def calcOrder(a, card):
-    check = [False]*256
+    check = [False] * 256
     check[0] = True
     check[a] = True
     k = 1
@@ -79,7 +79,7 @@ def calcOrder(a, card):
          
 def GF_generador():
     generators = []
-    for i in range(1, 255):
+    for i in range(1, 256):
         k = calcOrder(i, 256)
         if (k == 255):
             generators.append(i)
@@ -100,3 +100,5 @@ if __name__ == "__main__":
     exp, log = GF_tables()
     testInv(exp, log)
     print("Valid inv")
+    gens = GF_generador()
+    print(gens)

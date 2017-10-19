@@ -11,15 +11,15 @@ import quicksort as quick
 
 def timeForGF_product_T(a, b):
     exponentialT, logarithmT = gf.GF_tables()
-    start_time = time.time()
+    start_time = time.process_time()
     gf.GF_product_t(a, b, exponentialT, logarithmT)
-    stime = time.time() - start_time
+    stime = time.process_time() - start_time
     return stime
 
 def timeForGF_product_P(a, b):
-    start_time = time.time()
+    start_time = time.process_time()
     gf.GF_product_p(a, b)
-    stime = time.time() - start_time
+    stime = time.process_time() - start_time
     return stime
 
 def GF_product_TvsGF_productP(n_runs, b):
@@ -42,9 +42,6 @@ def printResults(results):
     for i in range(256):
         for gfValue in results:
             print("T: {} P: {}".format(gfValue[0], gfValue[1]))
-
-
-    
 
 if __name__ == "__main__":
     #results02 = GF_product_TvsGF_productP(10, 0x02)
