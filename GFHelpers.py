@@ -71,7 +71,7 @@ def calcOrder(a, card):
     check[a] = True
     k = 1
     tmp = a
-    while (tmp != 1 and k < card):
+    while (tmp != 1):
         tmp = GF_product_p(tmp, a)
         check[tmp] = True
         k = k + 1

@@ -10,6 +10,8 @@ import GFHelpers as gf
 import aes
 import time
 
+master_key = 0x2b7e151628aed2a6abf7158809cf4f3c
+
 def asHexMatrix(cypher):
     matrix = [[0 for i in range(4)] for j in range(4)]
     chex = hex(cypher)
@@ -18,7 +20,11 @@ def asHexMatrix(cypher):
             index = (i * 4 + j) * 2 + 2
             matrix[j][i] = chex[index:index+2]
     return matrix
-        
+
+def printMatrix(aMatrix):
+    for i in range(len(aMatrix)):
+        print(aMatrix[i])
+
 class AesWoByteSub(aes.AES):
     def _AES__sub_bytes(self, s):
         pass
@@ -26,7 +32,6 @@ class AesWoByteSub(aes.AES):
 class AesWoShiftRows(aes.AES):
     def _AES__shift_rows(self, s):
         pass
-        
 
 def ByteSubEffectTest():
     aes = AesWoByteSub(master_key)
@@ -42,26 +47,26 @@ def ByteSubEffectTest():
                 assert(c == ci ^ cj ^ cij)
     print("Byte substitution effect tested   ", flush=True)
     
-
-
+def ShiftRowsEffectTest():
+    aes = AesWoShiftRows(master_key)
+    m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
+    c = aes.encrypt(m)
+    hexC = hex(c)
+    for i in range(4):
+        mi = m ^ (1 << i * 4 * 8)
+        ci = aes.encrypt(mi)
+        hexCi = hex(ci)
+        a = 8 * (3 - i) + 2
+        b = a + 8
+        print("Only cypher digits: {} and {} different".format(hexC[a:b],
+              hexCi[a:b]))
+        printMatrix(asHexMatrix(c))
+        print("")
+        printMatrix(asHexMatrix(ci))
+        print("")
+    
+        
 
 if __name__ == "__main__":
-    master_key = 0x2b7e151628aed2a6abf7158809cf4f3c
-    aes = AesWoByteSub(master_key)
-    plaintext = 0x3243f6a8885a308d313198a2e0370734
-    encrypted = aes.encrypt(plaintext)
-    plaintextDec = aes.decrypt(encrypted)
-    
-    m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
-    mi = 0x1597C4EF331C828B7E6D1B2EB3EA3B95
-    mj = 0x1597C4EF331CC28B7E6D1B2E93EA3B95
-    mij = 0x1597C4EF331C828B7E6D1B2E93EA3B95
-    
-    c = aes.encrypt(m)
-    ci = aes.encrypt(mi)
-    cj = aes.encrypt(mj)
-    cij = aes.encrypt(mij)
-    cc = ci ^ cj ^ cij
-    
-    ByteSubEffectTest()
-    m = asHexMatrix(0x1597C4EF331CC28B7E6D1B2EB3EA3B95)
+    # ByteSubEffectTest()
+    ShiftRowsEffectTest()
