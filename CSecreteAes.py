@@ -33,6 +33,10 @@ class AesWoShiftRows(aes.AES):
     def _AES__shift_rows(self, s):
         pass
 
+class AesWoMixColumns(aes.AES):
+    def _AES__mix_columns(self, s):
+        pass
+
 def ByteSubEffectTest():
     aes = AesWoByteSub(master_key)
     m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
@@ -53,7 +57,7 @@ def ShiftRowsEffectTest():
     c = aes.encrypt(m)
     hexC = hex(c)
     for i in range(4):
-        mi = m ^ (1 << i * 4 * 8)
+        mi = m ^ (1 << i * 32)
         ci = aes.encrypt(mi)
         hexCi = hex(ci)
         a = 8 * (3 - i) + 2
@@ -65,8 +69,27 @@ def ShiftRowsEffectTest():
         printMatrix(asHexMatrix(ci))
         print("")
     
-        
+def mixColumnsEffectTest():
+    aes = AesWoMixColumns(master_key)
+    m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
+    c = aes.encrypt(m)
+    hexC = hex(c)
+    print("Let's apply modifications only in the diagonal bytes of the cypher matrix")
+    for i in range(4):
+        print(i)
+        mi = m ^ (1 << i * 32)
+        ci = aes.encrypt(mi)
+        hexCi = hex(ci)
+        a = 8 * (3 - i) + 2
+        b = a + 8
+        print("Only cypher digits: {} and {} different".format(hexC[a:b],
+              hexCi[a:b]))
+        printMatrix(asHexMatrix(c))
+        print("")
+        printMatrix(asHexMatrix(ci))
+        print("")
 
 if __name__ == "__main__":
     # ByteSubEffectTest()
-    ShiftRowsEffectTest()
+    # ShiftRowsEffectTest()
+    mixColumnsEffectTest()
