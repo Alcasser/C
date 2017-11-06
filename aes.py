@@ -224,3 +224,4 @@ if __name__ == "__main__":
         plaintext = 0x3243f6a8885a308d313198a2e0370734
         encrypted = aes.encrypt(plaintext)
         decplain = aes.decrypt(encrypted)
+        print(decplain)

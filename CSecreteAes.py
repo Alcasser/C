@@ -6,9 +6,7 @@ Created on Sun Oct 15 19:30:57 2017
 @author: alcasser
 """
 
-import GFHelpers as gf
 import aes
-import time
 
 master_key = 0x2b7e151628aed2a6abf7158809cf4f3c
 
@@ -37,7 +35,7 @@ class AesWoMixColumns(aes.AES):
     def _AES__mix_columns(self, s):
         pass
 
-def ByteSubEffectTest():
+def byteSubEffectTest():
     aes = AesWoByteSub(master_key)
     m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
     c = aes.encrypt(m)
@@ -47,22 +45,25 @@ def ByteSubEffectTest():
                 ci = aes.encrypt(m ^ (1 << i))
                 cj = aes.encrypt(m ^ (1 << j))
                 cij = aes.encrypt(m ^ (1 << i ^ 1 << j))
-                print(hex(cij), end="\r", flush=True)
+                #print(hex(cij), end="\r", flush=True)
                 assert(c == ci ^ cj ^ cij)
     print("Byte substitution effect tested   ", flush=True)
     
-def ShiftRowsEffectTest():
+def shiftRowsEffectTest():
     aes = AesWoShiftRows(master_key)
     m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
     c = aes.encrypt(m)
     hexC = hex(c)
+    print(hexC)
     for i in range(4):
         mi = m ^ (1 << i * 32)
         ci = aes.encrypt(mi)
         hexCi = hex(ci)
         a = 8 * (3 - i) + 2
+        # accedir a la columna que varia
+        # +2 per eliminar el 0x
         b = a + 8
-        print("Only cypher digits: {} and {} different".format(hexC[a:b],
+        print("Only columns: {} and {} different".format(hexC[a:b],
               hexCi[a:b]))
         printMatrix(asHexMatrix(c))
         print("")
@@ -73,23 +74,16 @@ def mixColumnsEffectTest():
     aes = AesWoMixColumns(master_key)
     m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
     c = aes.encrypt(m)
-    hexC = hex(c)
-    print("Let's apply modifications only in the diagonal bytes of the cypher matrix")
     for i in range(4):
-        print(i)
         mi = m ^ (1 << i * 32)
         ci = aes.encrypt(mi)
-        hexCi = hex(ci)
-        a = 8 * (3 - i) + 2
-        b = a + 8
-        print("Only cypher digits: {} and {} different".format(hexC[a:b],
-              hexCi[a:b]))
+        print("Only on byte modified")
         printMatrix(asHexMatrix(c))
         print("")
         printMatrix(asHexMatrix(ci))
         print("")
 
 if __name__ == "__main__":
-    # ByteSubEffectTest()
-    # ShiftRowsEffectTest()
+    # byteSubEffectTest()
+    # shiftRowsEffectTest()
     mixColumnsEffectTest()

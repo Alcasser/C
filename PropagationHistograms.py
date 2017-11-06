@@ -42,8 +42,11 @@ def propagateChangesMessageNumBits():
     plt.show()
 
 def propagateChangesMessagePositions():
-    pass
+    aesv = aes.AES(master_key)
+    m = 0x1597C4EF331CC28B7E6D1B2EB3EA3B95
+    c = aesv.encrypt(m)
+    poschanging = []
         
  
-propagateChangesMessage()
+propagateChangesMessageNumBits()
 

@@ -34,6 +34,18 @@ def reducePoly(aPoly):
     else:
         return reducedPoly
 
+def GF_product_p(a, b):
+    if (a == 0 or b == 0): return 0
+    bb = asBinString(b)
+    sumArray = [] 
+    length = len(bb);
+    for i in range(length):
+        if (bb[length - 1 - i] == '1'):
+            sumArray.append(a << i)
+    resPoly = addPolyArrayXor(sumArray)
+    return reducePoly(resPoly)
+
+
 def GF_tables():
     exponential = []
     logarithm = [None]*256
@@ -47,16 +59,6 @@ def GF_tables():
         logarithm[exponential[-1]] = i
     return exponential, logarithm
     
-def GF_product_p(a, b):
-    if (a == 0 or b == 0): return 0
-    bb = asBinString(b)
-    sumArray = [] 
-    length = len(bb);
-    for i in range(length):
-        if (bb[length - 1 - i] == '1'):
-            sumArray.append(a << i)
-    resPoly = addPolyArrayXor(sumArray)
-    return reducePoly(resPoly)
     
 # http://www.cs.utsa.edu/~wagner/laws/FFM.html
 def GF_product_t(a, b, exponentialCalc, logarithmCalc):
@@ -94,11 +96,12 @@ def GF_invers(a, exponentialCalc, logarithmCalc):
 def testInv(exponentialCalc, logarithmCalc):
     for i in range(1, 256):
         assert (GF_product_p(i, GF_invers(i, exponentialCalc, logarithmCalc)) == 1)
+    print("Valid inv")
         
 
 if __name__ == "__main__":
     exp, log = GF_tables()
     testInv(exp, log)
-    print("Valid inv")
     gens = GF_generador()
     print(gens)
+    print(len(gens))
