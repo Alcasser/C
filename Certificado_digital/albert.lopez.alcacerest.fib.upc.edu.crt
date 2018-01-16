@@ -1,0 +1,62 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 32 (0x20)
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=ES, ST=CATALUNYA, L=Barcelona, O=FIB, OU=MAT, CN=Criptografia FIB/emailAddress=fernando.martinez@upc.edu
+        Validity
+            Not Before: Dec  4 09:57:16 2017 GMT
+            Not After : Feb  5 23:59:59 2018 GMT
+        Subject: CN=Albert Lopez Alcacer/emailAddress=albert.lopez.alcacer@est.fib.upc.edu
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (521 bit)
+                pub: 
+                    04:01:3b:a9:e5:2f:1e:60:77:bf:8f:d0:46:e0:32:
+                    45:21:b5:88:36:d0:6a:33:6b:01:9b:5e:30:04:4b:
+                    61:7f:9e:fd:5f:f8:c1:1b:b1:e1:54:21:87:2a:e0:
+                    fe:36:90:df:db:53:a6:11:f2:dc:9b:67:33:6f:26:
+                    3c:35:d2:f8:a7:70:99:01:f2:f1:cf:14:ea:42:7f:
+                    45:ef:97:22:bc:6e:b6:7f:96:c1:df:e7:85:b2:de:
+                    09:3e:2a:34:40:e0:1f:cf:e2:78:35:3a:a2:10:7c:
+                    95:81:f0:23:f5:0a:c0:a7:63:93:b4:1e:6b:46:68:
+                    0e:2d:14:83:74:05:de:aa:fa:0b:05:3f:94
+                ASN1 OID: secp521r1
+                NIST CURVE: P-521
+        X509v3 extensions:
+            X509v3 Subject Alternative Name: 
+                email:albert.lopez.alcacer@est.fib.upc.edu
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Authority Key Identifier: 
+                keyid:69:3F:F7:75:59:1B:2F:FF:B3:D6:30:51:A6:A1:80:4E:FC:6E:4D:23
+
+            X509v3 Extended Key Usage: 
+                E-mail Protection
+    Signature Algorithm: ecdsa-with-SHA256
+         30:81:88:02:42:01:82:c8:2d:ac:de:ff:19:8a:7c:98:2e:fb:
+         3e:e6:f8:cc:8e:79:f8:56:6e:97:65:dc:36:69:d5:9f:87:6b:
+         8b:42:e8:86:99:e9:24:7b:0a:78:37:b8:55:0f:ed:09:37:93:
+         1e:0d:c1:22:21:8f:4d:c8:57:6f:8e:22:65:32:ba:1f:19:02:
+         42:00:bb:a6:e0:4d:8e:92:1d:98:24:58:2b:63:05:aa:9d:98:
+         23:ef:3e:10:e2:89:f7:81:b5:04:98:b1:82:db:dd:44:4e:ef:
+         86:4a:77:61:4f:30:51:88:dd:6f:c1:aa:a6:70:2c:85:09:ec:
+         8f:75:e3:4a:f5:b5:9f:2f:09:30:20:e0:73
+-----BEGIN CERTIFICATE-----
+MIIC2TCCAjqgAwIBAgIBIDAKBggqhkjOPQQDAjCBljELMAkGA1UEBhMCRVMxEjAQ
+BgNVBAgTCUNBVEFMVU5ZQTESMBAGA1UEBxMJQmFyY2Vsb25hMQwwCgYDVQQKEwNG
+SUIxDDAKBgNVBAsTA01BVDEZMBcGA1UEAxMQQ3JpcHRvZ3JhZmlhIEZJQjEoMCYG
+CSqGSIb3DQEJARYZZmVybmFuZG8ubWFydGluZXpAdXBjLmVkdTAeFw0xNzEyMDQw
+OTU3MTZaFw0xODAyMDUyMzU5NTlaMFQxHTAbBgNVBAMTFEFsYmVydCBMb3BleiBB
+bGNhY2VyMTMwMQYJKoZIhvcNAQkBFiRhbGJlcnQubG9wZXouYWxjYWNlckBlc3Qu
+ZmliLnVwYy5lZHUwgZswEAYHKoZIzj0CAQYFK4EEACMDgYYABAE7qeUvHmB3v4/Q
+RuAyRSG1iDbQajNrAZteMARLYX+e/V/4wRux4VQhhyrg/jaQ39tTphHy3JtnM28m
+PDXS+KdwmQHy8c8U6kJ/Re+XIrxutn+Wwd/nhbLeCT4qNEDgH8/ieDU6ohB8lYHw
+I/UKwKdjk7Qea0ZoDi0Ug3QF3qr6CwU/lKN3MHUwLwYDVR0RBCgwJoEkYWxiZXJ0
+LmxvcGV6LmFsY2FjZXJAZXN0LmZpYi51cGMuZWR1MAwGA1UdEwEB/wQCMAAwHwYD
+VR0jBBgwFoAUaT/3dVkbL/+z1jBRpqGATvxuTSMwEwYDVR0lBAwwCgYIKwYBBQUH
+AwQwCgYIKoZIzj0EAwIDgYwAMIGIAkIBgsgtrN7/GYp8mC77Pub4zI55+FZul2Xc
+NmnVn4dri0LohpnpJHsKeDe4VQ/tCTeTHg3BIiGPTchXb44iZTK6HxkCQgC7puBN
+jpIdmCRYK2MFqp2YI+8+EOKJ94G1BJixgtvdRE7vhkp3YU8wUYjdb8GqpnAshQns
+j3XjSvW1ny8JMCDgcw==
+-----END CERTIFICATE-----
